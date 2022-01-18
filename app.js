@@ -25,7 +25,7 @@ const MongoStore = require('connect-mongo');
 
 main().catch(err => console.log(err));
 
-// 'mongodb://localhost:27017/YelpCamp'
+
 async function main() {
     try {
         await mongoose.connect(dbUrl);
@@ -36,6 +36,15 @@ async function main() {
         console.log(e)
     }
 }
+
+// main().catch(err => console.log(err));
+
+// async function main() {
+//   await mongoose.connect(dbUrl);
+// }
+
+
+
 
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, "views"))
@@ -173,6 +182,7 @@ app.use((err, req, res, next) => {
     res.status(status).render('error', { err });
 })
 
-app.listen(3000, () => {
-    console.log('listening on 3000 port')
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`listening to ${port} port`)
 })
